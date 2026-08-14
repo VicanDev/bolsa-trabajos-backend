@@ -38,4 +38,15 @@ public class Postulacion {
             estado = "PENDIENTE";
         }
     }
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public Oferta getOferta() { return oferta; }
+    public void setOferta(Oferta oferta) { this.oferta = oferta; }
+    public Postulante getPostulante() { return postulante; }
+    public void setPostulante(Postulante postulante) { this.postulante = postulante; }
+    public LocalDate getFechaPostulacion() { return fechaPostulacion; }
+    public void setFechaPostulacion(LocalDate fechaPostulacion) { this.fechaPostulacion = fechaPostulacion; }
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
 }

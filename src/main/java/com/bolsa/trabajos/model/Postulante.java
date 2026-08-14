@@ -25,4 +25,15 @@ public class Postulante {
     private String habilidades;
 
     private String disponibilidad;
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public Usuario getUsuario() { return usuario; }
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+    public String getCvUrl() { return cvUrl; }
+    public void setCvUrl(String cvUrl) { this.cvUrl = cvUrl; }
+    public String getHabilidades() { return habilidades; }
+    public void setHabilidades(String habilidades) { this.habilidades = habilidades; }
+    public String getDisponibilidad() { return disponibilidad; }
+    public void setDisponibilidad(String disponibilidad) { this.disponibilidad = disponibilidad; }
 }
