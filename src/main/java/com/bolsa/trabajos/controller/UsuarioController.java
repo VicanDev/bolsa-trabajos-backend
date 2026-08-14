@@ -33,4 +33,36 @@ public class UsuarioController {
         usuarios.forEach(u -> u.setPassword(null));
         return ResponseEntity.ok(usuarios);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> obtenerUsuario(@PathVariable Long id) {
+        try {
+            Usuario usuario = usuarioService.obtenerPorId(id);
+            usuario.setPassword(null);
+            return ResponseEntity.ok(usuario);
+        } catch (RuntimeException ex) {
+            return ResponseEntity.status(404).body(ex.getMessage());
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> actualizarUsuario(@PathVariable Long id, @RequestBody Usuario datosNuevos) {
+        try {
+            Usuario actualizado = usuarioService.actualizarUsuario(id, datosNuevos);
+            actualizado.setPassword(null);
+            return ResponseEntity.ok(actualizado);
+        } catch (RuntimeException ex) {
+            return ResponseEntity.status(404).body(ex.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> eliminarUsuario(@PathVariable Long id) {
+        try {
+            usuarioService.eliminarUsuario(id);
+            return ResponseEntity.noContent().build();
+        } catch (RuntimeException ex) {
+            return ResponseEntity.status(404).body(ex.getMessage());
+        }
+    }
 }

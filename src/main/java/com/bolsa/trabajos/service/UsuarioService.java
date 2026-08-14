@@ -32,6 +32,28 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
+    public Usuario obtenerPorId(Long id) {
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+    }
+
+    public Usuario actualizarUsuario(Long id, Usuario datosNuevos) {
+        Usuario usuario = obtenerPorId(id);
+        usuario.setNombre(datosNuevos.getNombre());
+        usuario.setCorreo(datosNuevos.getCorreo());
+
+        if (datosNuevos.getPassword() != null && !datosNuevos.getPassword().isBlank()) {
+            usuario.setPassword(passwordEncoder.encode(datosNuevos.getPassword()));
+        }
+
+        return usuarioRepository.save(usuario);
+    }
+
+    public void eliminarUsuario(Long id) {
+        Usuario usuario = obtenerPorId(id);
+        usuarioRepository.delete(usuario);
+    }
+
     public boolean verificarCredenciales(String correo, String password) {
         Optional<Usuario> optUsuario = usuarioRepository.findByCorreo(correo);
         
