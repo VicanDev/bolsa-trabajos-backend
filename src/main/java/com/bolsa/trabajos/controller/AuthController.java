@@ -28,8 +28,10 @@ public class AuthController {
         if (esValido) {
             Usuario usuario = usuarioService.obtenerPorCorreo(loginRequest.getCorreo());
             Map<String, Object> respuesta = new HashMap<>();
+            respuesta.put("mensaje", "Login exitoso");
             respuesta.put("id", usuario.getId());
             respuesta.put("nombre", usuario.getNombre());
+            respuesta.put("correo", usuario.getCorreo());
             respuesta.put("rol", usuario.getRol());
             return ResponseEntity.ok(respuesta);
         } else {
